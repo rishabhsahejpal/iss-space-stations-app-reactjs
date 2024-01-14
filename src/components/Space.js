@@ -30,6 +30,8 @@ export class Space extends Component {
          //1st call
         axios.get(process.env.REACT_APP_ISS_URL)
         .then(res => {
+            console.log('Cordinates information')
+            console.log(res)
            // run a call to get the location info
             let locURI = `${process.env.REACT_APP_LOCURL}q=${res.data.latitude}+${res.data.longitude}&key=${process.env.REACT_APP_APIKEY}`
             this.setState({
@@ -38,6 +40,8 @@ export class Space extends Component {
             });
             //2nd call
             axios.get(locURI).then(res=>{
+                console.log('Geocode information')
+                console.log(res)
                 this.setState({
                     country: (res.data.results[0].components.country !== undefined)? res.data.results[0].components.country : 'empty',
                     continent: (res.data.results[0].components.continent !== undefined)? res.data.results[0].components.continent : 'empty',
