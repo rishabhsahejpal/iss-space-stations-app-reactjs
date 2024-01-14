@@ -19,10 +19,13 @@ export class LocationInfo extends Component{
 		
 	}
 
+	/*https://www.countryflags.com/${this.props.data.flag}/flat/32.png - OLD website, DOESN'T WORK*/
+
 	getFlag = () => {
 		if(this.props.data.flag !== undefined && this.props.data.flag !== 'empty' ){
 				const text = (this.props.data.flag.toString()).toLowerCase();
-				console.log(text);
+				console.log(typeof(this.props.data.flag));
+				console.log(`https://flagsapi.com/${text}/flat/32.png`)
 				return text;
 
 			}
@@ -32,7 +35,7 @@ export class LocationInfo extends Component{
     	const wikiLink = this.getWikiLink();
     	const showCountry = (this.state.showCountry) ? 'show' : 'hide';
     	const showWater = (this.state.showCountry) ? 'hide' : 'show';
-    //	const flag= (!this.getFlag() !== undefined) ? 'no-flag' : this.getFlag()
+    	const flag = this.getFlag();
 
         return (
 			<div className="location-info col-12 row no-gutters">
@@ -52,8 +55,8 @@ export class LocationInfo extends Component{
 			    <div className='col-12 country'> 
 			        <i className="fas fa-map-marker-alt"></i>
 			        <div className={`flag ${showCountry}`}>
-			            <img alt="Flag" src={`https://www.countryflags.io/${this.props.data.flag}/flat/32.png`}></img>
-			        </div>
+			        	<img alt="Flag" src={`https://flagsapi.com/RU/flat/32.png`}></img>
+					</div>
 			        <p className={`country-name ${showCountry}`}>{this.props.data.country}</p>
 			        <p className={`water-body-name ${showWater}`}><i className="fas fa-water"></i>{this.props.data.formatted}{this.state.inital}</p>
 			        <a href={wikiLink}>Find More about {this.props.data.formatted}{this.state.inital} <i className="fas fa-angle-double-right"></i></a>
