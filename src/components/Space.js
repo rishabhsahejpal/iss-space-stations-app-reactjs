@@ -32,26 +32,24 @@ export class Space extends Component {
         const REACT_APP_APIKEY = "9420a4fdb2ad41af8ac2890fa31f8c8c" 
         
          //1st call
-         console.log("1",REACT_APP_ISS_URL)
         axios.get(REACT_APP_ISS_URL)
         .then(res => {
-            console.log(res);
            // run a call to get the location info
             let locURI = `${REACT_APP_LOCURL}q=${res.data.latitude}+${res.data.longitude}&key=${REACT_APP_APIKEY}`
-            console.log("2",locURI)
             this.setState({
                 lat : res.data.latitude.toFixed(3),
                 lon : res.data.longitude.toFixed(3),
             });
             //2nd call
             axios.get(locURI).then(res=>{
-                console.log(res)
+                // console.log("Here")
+                // console.log(res.data.results[0])
                 this.setState({
                     country: (res.data.results[0].components.country !== undefined)? res.data.results[0].components.country : 'empty',
                     continent: (res.data.results[0].components.continent !== undefined)? res.data.results[0].components.continent : 'empty',
                     category: res.data.results[0].components._category,
                     formatted: res.data.results[0].formatted,
-                    flag: (res.data.results[0].annotations.flag !== undefined) ? res.data.results[0].annotations.flag : 'empty' ,
+                    flag: (res.data.results[0].annotations.flag !== undefined) ? res.data.results[0].annotations.flag.toString() : 'empty' ,
                     //Chnage the loader on the final call results
                     loader: false
                 })

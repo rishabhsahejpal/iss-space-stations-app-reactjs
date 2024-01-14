@@ -23,9 +23,9 @@ export class LocationInfo extends Component{
 
 	getFlag = () => {
 		if(this.props.data.flag !== undefined && this.props.data.flag !== 'empty' ){
-				const text = (this.props.data.flag.toString()).toLowerCase();
-				console.log(typeof(this.props.data.flag));
-				console.log(`https://flagsapi.com/${text}/flat/32.png`)
+				const text = (this.props.data.flag).toLowerCase();
+				// console.log(text)
+
 				return text;
 
 			}
@@ -35,10 +35,14 @@ export class LocationInfo extends Component{
     	const wikiLink = this.getWikiLink();
     	const showCountry = (this.state.showCountry) ? 'show' : 'hide';
     	const showWater = (this.state.showCountry) ? 'hide' : 'show';
-    	const flag = this.getFlag();
+    	// const flag = 'IN';
+    	const flag = this.getFlag()!== undefined ? this.getFlag(): '';
+    	const flagSrc = flag !== '' ? `https://flagsapi.com/${flag}/flat/32.png` : '';
+    	// console.log(flagSrc)
 
         return (
 			<div className="location-info col-12 row no-gutters">
+				<img alt="Flags" src={`/hey/${flag}/`} width="100" height="100"/>
 			    <h3 className="col-12">Location of ISS <i className="fas fa-rocket"></i></h3>
 			    <div className='col-12 col-md-6 row no-gutters'>
 			        <p className="col-5">
@@ -55,7 +59,7 @@ export class LocationInfo extends Component{
 			    <div className='col-12 country'> 
 			        <i className="fas fa-map-marker-alt"></i>
 			        <div className={`flag ${showCountry}`}>
-			        	<img alt="Flag" src={`https://flagsapi.com/${flag}/flat/32.png`}></img>
+			        	<img alt="Flag" src={flagSrc}></img>
 					</div>
 			        <p className={`country-name ${showCountry}`}>{this.props.data.country}</p>
 			        <p className={`water-body-name ${showWater}`}><i className="fas fa-water"></i>{this.props.data.formatted}{this.state.inital}</p>
