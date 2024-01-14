@@ -55,7 +55,7 @@ export class LocationInfo extends Component{
 			    <div className='col-12 country'> 
 			        <i className="fas fa-map-marker-alt"></i>
 			        <div className={`flag ${showCountry}`}>
-			        	<img alt="Flag" src={`https://flagsapi.com/RU/flat/32.png`}></img>
+			        	<img alt="Flag" src={`https://flagsapi.com/${flag}/flat/32.png`}></img>
 					</div>
 			        <p className={`country-name ${showCountry}`}>{this.props.data.country}</p>
 			        <p className={`water-body-name ${showWater}`}><i className="fas fa-water"></i>{this.props.data.formatted}{this.state.inital}</p>
