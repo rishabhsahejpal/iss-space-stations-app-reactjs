@@ -22,27 +22,26 @@ export class LocationInfo extends Component{
 	/*https://www.countryflags.com/${this.props.data.flag}/flat/32.png - OLD website, DOESN'T WORK*/
 
 	getFlag = () => {
-		if(this.props.data.flag !== undefined && this.props.data.flag !== 'empty' ){
-				const text = (this.props.data.flag).toLowerCase();
-				// console.log(text)
-
-				return text;
-
-			}
+		if(this.props.data.flag !== undefined && this.props.data.flag !== 'empty' )
+			return this.props.data.flag.toUpperCase();
 	}
+
+	/* Get country code string, IN, USA etc from 🇺🇸*/
+	getUTF16 = (charPos) => 65 + (charPos-127462) //Add to A, which is 65
+
+	getCodePoint = (char) => String.fromCodePoint(this.getUTF16(char)) // Get string from the numeric value
+
+	getCountryCodeString = (flag) => this.getCodePoint(flag.codePointAt(0)) + this.getCodePoint(flag.codePointAt(2))
 
     render() {
     	const wikiLink = this.getWikiLink();
     	const showCountry = (this.state.showCountry) ? 'show' : 'hide';
     	const showWater = (this.state.showCountry) ? 'hide' : 'show';
-    	// const flag = 'IN';
     	const flag = this.getFlag()!== undefined ? this.getFlag(): '';
-    	const flagSrc = flag !== '' ? `https://flagsapi.com/${flag}/flat/32.png` : '';
-    	// console.log(flagSrc)
+    	const flagSrc = flag !== '' ? `https://flagsapi.com/${this.getCountryCodeString(flag)}/flat/32.png` : '';
 
         return (
 			<div className="location-info col-12 row no-gutters">
-				<img alt="Flags" src={`/hey/${flag}/`} width="100" height="100"/>
 			    <h3 className="col-12">Location of ISS <i className="fas fa-rocket"></i></h3>
 			    <div className='col-12 col-md-6 row no-gutters'>
 			        <p className="col-5">
