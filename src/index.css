@@ -259,12 +259,12 @@ div.content-display h1 a:hover{
 
 
 div.content-display button{
-  font-size: 0.85rem;
+  font-size: 1.15rem;
   font-weight: bold;
   border: none;
   background: #102c35;
   color: #FFF;
-  padding: 1rem 2.5rem;
+  padding: .15rem 2.35rem;
   text-transform: uppercase;
   cursor: pointer;
   transition: all .25s ease;
@@ -289,7 +289,7 @@ div.location-info{
 }
 
 div.location-info h3{
-  font-size: 1.1rem;
+  font-size: 1.65rem;
   display:flex;
   justify-content: center;
   align-items: center;
@@ -297,8 +297,8 @@ div.location-info h3{
 
 div.location-info h3 i{
   margin-left : 1rem;
-  width: 2rem;
-  height: 2rem;
+  width: 2.75rem;
+  height: 2.75rem;
   display:flex;
   justify-content: center;
   align-items: center;

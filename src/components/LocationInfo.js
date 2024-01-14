@@ -27,11 +27,9 @@ export class LocationInfo extends Component{
 	}
 
 	/* Get country code string, IN, USA etc from 🇺🇸*/
-	getUTF16 = (charPos) => 65 + (charPos-127462) //Add to A, which is 65
-
-	getCodePoint = (char) => String.fromCodePoint(this.getUTF16(char)) // Get string from the numeric value
-
-	getCountryCodeString = (flag) => this.getCodePoint(flag.codePointAt(0)) + this.getCodePoint(flag.codePointAt(2))
+	getUTFFromUnicode = (charPosUnicode) => 65 + (charPosUnicode - 127462) //Add to string A, String A position - 65, Unicode 🇦 Position - 127462  
+	getCountryCodeCharacter = (charUnicode) => String.fromCodePoint(this.getUTFFromUnicode(charUnicode)) // Get string from the unicode number
+	getCountryCodeString = (flag) => this.getCountryCodeCharacter(flag.codePointAt(0)) + this.getCountryCodeCharacter(flag.codePointAt(2))
 
     render() {
     	const wikiLink = this.getWikiLink();
