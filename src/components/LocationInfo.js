@@ -35,7 +35,7 @@ export class LocationInfo extends Component{
 	getCountryCodeStringAll = (flag) => String.fromCodePoint(...[...flag].map( char => 65 + (char.codePointAt(0) - 127462 ) ) )
 	
     render() {
-        console.log(this.state)
+        console.log("check if it's still working", this.state)
     	const wikiLink = this.getWikiLink();
     	const showCountry = (this.state.showCountry) ? 'show' : 'hide';
     	const showWater = (this.state.showCountry) ? 'hide' : 'show';
