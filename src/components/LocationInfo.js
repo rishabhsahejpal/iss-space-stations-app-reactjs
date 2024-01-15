@@ -19,7 +19,7 @@ export class LocationInfo extends Component{
 		
 	}
 
-	/*https://www.countryflags.com/${this.props.data.flag}/flat/32.png - OLD website, DOESN'T WORK*/
+	/*https://www.countryflags.com/${this.props.data.flag}/flat/32.png - OLD website, DOESN'T WORK ANYMORE */
 
 	getFlag = () => {
 		if(this.props.data.flag !== undefined && this.props.data.flag !== 'empty' )
@@ -27,16 +27,20 @@ export class LocationInfo extends Component{
 	}
 
 	/* Get country code string, IN, USA etc from 🇺🇸*/
-	getUTFFromUnicode = (charPosUnicode) => 65 + (charPosUnicode - 127462) //Add to string A, String A position - 65, Unicode 🇦 Position - 127462  
-	getCountryCodeCharacter = (charUnicode) => String.fromCodePoint(this.getUTFFromUnicode(charUnicode)) // Get string from the unicode number
-	getCountryCodeString = (flag) => this.getCountryCodeCharacter(flag.codePointAt(0)) + this.getCountryCodeCharacter(flag.codePointAt(2))
+	// getUTFFromUnicode = (charPosUnicode) => 65 + (charPosUnicode - 127462) //Add to string A, String A position - 65, Unicode 🇦 Position - 127462  
+	// getCountryCodeCharacter = (charUnicode) => String.fromCodePoint(this.getUTFFromUnicode(charUnicode)) // Get string from the unicode number
+	// getCountryCodeString = (flag) => this.getCountryCodeCharacter(flag.codePointAt(0)) + this.getCountryCodeCharacter(flag.codePointAt(2))
 
+	/*Single line code using map*/
+	getCountryCodeStringAll = (flag) => String.fromCodePoint(...[...flag].map( char => 65 + (char.codePointAt(0) - 127462 ) ) )
+	
     render() {
+        console.log(this.state)
     	const wikiLink = this.getWikiLink();
     	const showCountry = (this.state.showCountry) ? 'show' : 'hide';
     	const showWater = (this.state.showCountry) ? 'hide' : 'show';
     	const flag = this.getFlag()!== undefined ? this.getFlag(): '';
-    	const flagSrc = flag !== '' ? `https://flagsapi.com/${this.getCountryCodeString(flag)}/flat/32.png` : '';
+    	const flagSrc = flag !== '' ? `https://flagsapi.com/${this.getCountryCodeStringAll(flag)}/flat/32.png` : '';
 
         return (
 			<div className="location-info col-12 row no-gutters">

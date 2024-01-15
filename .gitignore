@@ -11,6 +11,9 @@
 # production
 /build
 
+# index
+index-strict.js
+
 # misc
 .env
 .DS_Store
