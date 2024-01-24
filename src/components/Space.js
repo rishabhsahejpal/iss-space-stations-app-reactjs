@@ -29,7 +29,6 @@ export class Space extends Component {
     getInfo = ()=>{
          //1st call
         axios.get(process.env.REACT_APP_ISS_URL)
-        console.log(process.env.REACT_APP_ISS_URL, process.env.REACT_APP_LOCURL, process.env.REACT_APP_APIKEY)
         .then(res => {
            // run a call to get the location info
             let locURI = `${process.env.REACT_APP_LOCURL}q=${res.data.latitude}+${res.data.longitude}&key=${process.env.REACT_APP_APIKEY}`
