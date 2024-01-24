@@ -27,6 +27,7 @@ export class Space extends Component {
     }
 
     getInfo = ()=>{
+        // Pending usage of environment variables
         const REACT_APP_ISS_URL = "https://api.wheretheiss.at/v1/satellites/25544"
         const REACT_APP_LOCURL = "https://api.opencagedata.com/geocode/v1/json?"
         const REACT_APP_APIKEY = "9420a4fdb2ad41af8ac2890fa31f8c8c" 
@@ -48,7 +49,7 @@ export class Space extends Component {
                     category: res.data.results[0].components._category,
                     formatted: res.data.results[0].formatted,
                     flag: (res.data.results[0].annotations.flag !== undefined) ? res.data.results[0].annotations.flag.toString() : 'empty' ,
-                    //Chnage the loader on the final call results
+                    //Change the loader on the final call results
                     loader: false
                 })
             }).catch(err=>console.log('Error',err))
