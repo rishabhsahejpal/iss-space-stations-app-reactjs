@@ -27,13 +27,9 @@ export class Space extends Component {
     }
 
     getInfo = ()=>{
-        // // Pending usage of environment variables
-        // const REACT_APP_ISS_URL = "https://api.wheretheiss.at/v1/satellites/25544"
-        // const REACT_APP_LOCURL = "https://api.opencagedata.com/geocode/v1/json?"
-        // const REACT_APP_APIKEY = "9420a4fdb2ad41af8ac2890fa31f8c8c" 
-        
          //1st call
         axios.get(process.env.REACT_APP_ISS_URL)
+        console.log(process.env.REACT_APP_ISS_URL, process.env.REACT_APP_LOCURL, process.env.REACT_APP_APIKEY)
         .then(res => {
            // run a call to get the location info
             let locURI = `${process.env.REACT_APP_LOCURL}q=${res.data.latitude}+${res.data.longitude}&key=${process.env.REACT_APP_APIKEY}`
